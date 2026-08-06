@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Assignment_05
+{
+    internal struct DeliveryCenter
+    {
+        private Shipment[] shipments;
+
+        public DeliveryCenter()
+        {
+            shipments = new Shipment[10];
+        }
+        public Shipment this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < shipments.Length)
+                    return shipments[index];
+
+                return default;
+            }
+
+            set
+            {
+                if (index >= 0 && index < shipments.Length)
+                    shipments[index] = value;
+            }
+        }
+        public Shipment this[string trackingCode]
+        {
+            get
+            {
+                if (shipments != null)
+                {
+                    for (int i = 0; i < shipments.Length; i++)
+                    {
+                        if (shipments[i].TrackingCode == trackingCode)
+                            return shipments[i];
+                    }
+                }
+                return default;
+            }
+        }
+        public bool AddShipment(Shipment shipment)
+        {
+            if (shipments != null)
+            {
+
+                for (int i = 0; i < shipments.Length; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(shipments[i].TrackingCode))
+                    {
+                        shipments[i] = shipment;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+    }
+}
