@@ -1,13 +1,13 @@
 ﻿using System.Runtime.InteropServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 
 namespace Assignment_05
-{
-    internal class Program
     {
-        static void Main(string[] args)
+        internal class Program
         {
-
+            static void Main(string[] args)
+            {
             #region  Theoretical Questions
             #region Question01
             // 1-Class is reference type stored in heap and supports inheritance while struct is value type stored in stack and does not support inheritance
@@ -21,75 +21,140 @@ namespace Assignment_05
             //d-It reduces code duplication , enhances maintainability and reusability of code allowing changes to be made in one place
             #endregion
             #endregion
-            DeliveryCenter d = new DeliveryCenter();
+            DeliveryCenter center = new DeliveryCenter();
 
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine($"Shipment {i + 1}");
+            Console.Write("Enter Center Name: ");
+            center.CenterName = Console.ReadLine();
 
-                Console.Write("Tracking Code: ");
-                string trackingCode = Console.ReadLine();
 
-                Console.Write("Description: ");
-                string description = Console.ReadLine();
 
-                Console.Write("Weight: ");
-                double weight = double.Parse(Console.ReadLine());
+            Console.WriteLine("\nStandard Shipment");
 
-                Console.Write("Delivery Fee: ");
-                double fee = double.Parse(Console.ReadLine());
-
-                Console.Write("City: ");
-                string city = Console.ReadLine();
-
-                Console.Write("Street: ");
-                string street = Console.ReadLine();
-
-                Console.Write("Building Number: ");
-                int building = int.Parse(Console.ReadLine());
-
-                DeliveryAddress address = new DeliveryAddress( street,city , building);
-
-                Shipment shipment = new Shipment(trackingCode, description, weight,fee,address);
-
-                if (d.AddShipment(shipment))
-                    Console.WriteLine("Shipment Added.");
-                else
-                    Console.WriteLine("Delivery Center is Full.");
-            }
-
-            Console.WriteLine("\nStored Shipments:");
-
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine(d[i]);
-            }
-
-            Console.Write("\nEnter Tracking Code: ");
+            Console.Write("Tracking Code: ");
             string code = Console.ReadLine();
 
-            Shipment result = d[code];
+            Console.Write("Description: ");
+            string desc = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(result.TrackingCode))
-                Console.WriteLine("Shipment not found.");
+            Console.Write("Weight: ");
+            double weight = double.Parse(Console.ReadLine());
+
+            Console.Write("Delivery Fee: ");
+            double fee = double.Parse(Console.ReadLine());
+
+            Console.Write("City: ");
+            string city = Console.ReadLine();
+
+            Console.Write("Street: ");
+            string street = Console.ReadLine();
+
+            Console.Write("Building Number: ");
+            int building = int.Parse(Console.ReadLine());
+
+            DeliveryAddress address = new DeliveryAddress(street, city, building);
+
+            StandardShipment s1 =
+                new StandardShipment(code, desc, weight, fee, address);
+
+            center.AddShipment(s1);
+
+
+            Console.WriteLine("\nExpress Shipment");
+
+            Console.Write("Tracking Code: ");
+            code = Console.ReadLine();
+
+            Console.Write("Description: ");
+            desc = Console.ReadLine();
+
+            Console.Write("Weight: ");
+            weight = double.Parse(Console.ReadLine());
+
+            Console.Write("Delivery Fee: ");
+            fee = double.Parse(Console.ReadLine());
+
+            Console.Write("City: ");
+            city = Console.ReadLine();
+
+            Console.Write("Street: ");
+            street = Console.ReadLine();
+
+            Console.Write("Building Number: ");
+            building = int.Parse(Console.ReadLine());
+
+            Console.Write("Extra Fee: ");
+            decimal extra = decimal.Parse(Console.ReadLine());
+
+            address = new DeliveryAddress(street, city, building);
+            ExpressShipment s2 =
+                new ExpressShipment(extra, code, desc, weight, fee, address);
+
+            center.AddShipment(s2);
+
+            Console.WriteLine("\nInternational Shipment");
+
+            Console.Write("Tracking Code: ");
+            code = Console.ReadLine();
+
+            Console.Write("Description: ");
+            desc = Console.ReadLine();
+
+            Console.Write("Weight: ");
+            weight = double.Parse(Console.ReadLine());
+
+            Console.Write("Delivery Fee: ");
+            fee = double.Parse(Console.ReadLine());
+
+            Console.Write("City: ");
+            city = Console.ReadLine();
+
+            Console.Write("Street: ");
+            street = Console.ReadLine();
+
+            Console.Write("Building Number: ");
+            building = int.Parse(Console.ReadLine());
+
+            Console.Write("Destination Country: ");
+            string country = Console.ReadLine();
+
+            Console.Write("Customs Fee: ");
+            decimal customs = decimal.Parse(Console.ReadLine());
+
+            address = new DeliveryAddress(street, city, building);
+
+            InternationalShipment s3 =
+                new InternationalShipment(code, desc, weight, fee, address, country, customs);
+
+            center.AddShipment(s3);
+
+
+
+            Console.WriteLine("\nAll Shipments");
+            center.PrintAllShipments();
+
+
+            Console.Write("\nEnter Tracking Code To Search: ");
+            string search = Console.ReadLine();
+
+            Shipment found = center[search];
+
+            if (found != null)
+                found.PrintShipment();
             else
-                Console.WriteLine(result);
+                Console.WriteLine("Shipment not found.");
 
-            Console.WriteLine("\nDeliveryAddress Copy Demo");
 
-            DeliveryAddress address1 =
-                new DeliveryAddress("Cairo", "Nasr Street", 12);
+            Console.Write("\nEnter Tracking Code To Remove: ");
+            string remove = Console.ReadLine();
 
-            DeliveryAddress address2 = address1;
-
-            address2.city = "Alexandria";
-
-            Console.WriteLine("Original:");
-            Console.WriteLine(address1.GetFullAddress());
-
-            Console.WriteLine("Copied:");
-            Console.WriteLine(address2.GetFullAddress());
-        
-    }
+            if (center.RemoveShipment(remove))
+                Console.WriteLine("Shipment Removed.");
+            else
+              Console.WriteLine("Shipment Not Found.");
+            Console.WriteLine("\nRemaining Shipments");
+            center.PrintAllShipments();
+        }
     }
 }
+
+

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment_05
 {
-    internal struct Shipment
+    internal class Shipment
     {
         private string trackingCode;
         private string description;
@@ -58,7 +58,7 @@ namespace Assignment_05
             get { return destination; }
             set { destination = value; }
         }
-        public double EstimatedCost
+        public virtual double EstimatedCost
         {
             get
             {
@@ -88,6 +88,7 @@ namespace Assignment_05
             if (newFee > 0)
                 DeliveryFee = (double)newFee;
         }
+
         public void PrintShipment()
         {
             Console.WriteLine($"Tracking Code : {TrackingCode}");
