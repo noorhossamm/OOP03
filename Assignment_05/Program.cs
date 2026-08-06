@@ -12,8 +12,15 @@ namespace Assignment_05
             #region Question01
             // 1-Class is reference type stored in heap and supports inheritance while struct is value type stored in stack and does not support inheritance
             // Class is better as it support inheritance , polymorphism and better for complex objects, it  avoid copying large amounts of data when passed 
-            #endregion 
             #endregion
-        }
+
+            #region Question02
+            // a- Shipment
+            // b- ExpressShipment
+            //c- it inherits from Shipment class the trackingCode property and it has the ExtraFee property so it contains both properties
+            //d-It reduces code duplication , enhances maintainability and reusability of code allowing changes to be made in one place
+            #endregion
+            #endregion
+    }
     }
 }
