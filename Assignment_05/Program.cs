@@ -1,6 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Numerics;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Timers;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using System;
 
 namespace Assignment_05
     {
@@ -153,6 +157,32 @@ namespace Assignment_05
               Console.WriteLine("Shipment Not Found.");
             Console.WriteLine("\nRemaining Shipments");
             center.PrintAllShipments();
+
+
+            // Practical Questions (Assignment 3)
+            #region Question01
+            //part1
+
+            // Method Overloading is having multiple methods with the same name but different parameters in the same class. It is compile-time polymorphism.
+            // Method Overriding: A derived class provides a new implementation for a method inherited from the base class. It is run-time polymorphism
+            //-----------------------------------
+            // Static Binding: The method call is determined at compile time. It is commonly used with method overloading.
+            // Dynamic Binding: The method call is determined at run time based on the actual object type. It is used with method overriding
+
+            //part2
+            //a)Prevents a class from being inherited by another class. It stops the inheritance chain completely.
+            //b)Sealed class: Prevents other classes from inheriting from it.
+            //Sealed method: Prevents further derived classes from overriding that method
+            // c) No. A sealed method cannot be overridden because the sealed keyword prevents any further overriding of that method
+
+
+
+
+
+
+            #endregion
+
+
         }
     }
 }
