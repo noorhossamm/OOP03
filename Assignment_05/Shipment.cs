@@ -89,7 +89,7 @@ namespace Assignment_05
                 DeliveryFee = (double)newFee;
         }
 
-        public void PrintShipment()
+        public virtual void PrintShipment()
         {
             Console.WriteLine($"Tracking Code : {TrackingCode}");
             Console.WriteLine($"Description   : {Description}");
@@ -99,6 +99,17 @@ namespace Assignment_05
             Console.WriteLine($"EstimatedCost : {EstimatedCost}");
         }
 
+        public void UpdateWeight(double newWeight)
+        {
+            if (newWeight > 0)
+                Weight = newWeight;
+        }
+
+        public void UpdateWeight(double newWeight, double extraPackingWeight)
+        {
+            if (newWeight > 0 && extraPackingWeight >= 0)
+                Weight = newWeight + extraPackingWeight;
+        }
 
 
     }
