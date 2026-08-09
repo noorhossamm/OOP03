@@ -60,5 +60,10 @@ namespace Assignment_05
             Console.WriteLine($"Customs Fee         : {CustomsFee} ");
             Console.WriteLine($"Estimated Cost      : {EstimatedCost}");
         }
+
+        public virtual void GenerateCustomsReport()
+        {
+            Console.WriteLine($"Customs Report: {TrackingCode} - {DestinationCountry} - Customs Fee: {CustomsFee} ");
+        }
     }
 }
