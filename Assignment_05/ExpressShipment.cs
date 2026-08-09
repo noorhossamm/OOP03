@@ -16,10 +16,6 @@ namespace Assignment_05
             set { extraFee = value >= 0 ? value : 0; }
         }
 
-        public double EstimatedCost
-        {
-            get { return DeliveryFee + (double)ExtraFee + ((double)Weight * 5); }
-        }
         #endregion
 
         #region Consrtuctor
@@ -28,6 +24,26 @@ namespace Assignment_05
             ExtraFee = extraFee;
         }
         #endregion
+
+        public override double EstimatedCost
+        {
+            get
+            {
+                return DeliveryFee + (Weight * 5) + (double)ExtraFee;
+            }
+        }
+
+        public override void PrintShipment()
+        {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Express Shipment");
+            Console.WriteLine($"Tracking Code : {TrackingCode}");
+            Console.WriteLine($"Description   : {Description}");
+            Console.WriteLine($"Weight        : {Weight} ");
+            Console.WriteLine($"Delivery Fee  : {DeliveryFee} ");
+            Console.WriteLine($"Extra Fee     : {ExtraFee} ");
+            Console.WriteLine($"Estimated Cost: {EstimatedCost}");
+        }
 
 
     }

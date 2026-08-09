@@ -35,6 +35,7 @@ namespace Assignment_05
             }
         }
 
+
         public InternationalShipment(string trackingCode,
                                      string description,
                                      double weight,
@@ -46,6 +47,18 @@ namespace Assignment_05
         {
             DestinationCountry = destinationCountry;
             CustomsFee = customsFee;
+        }
+        public override void PrintShipment()
+        {
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("International Shipment");
+            Console.WriteLine($"Tracking Code       : {TrackingCode}");
+            Console.WriteLine($"Description         : {Description}");
+            Console.WriteLine($"Weight              : {Weight} ");
+            Console.WriteLine($"Delivery Fee        : {DeliveryFee} ");
+            Console.WriteLine($"Destination Country : {DestinationCountry}");
+            Console.WriteLine($"Customs Fee         : {CustomsFee} ");
+            Console.WriteLine($"Estimated Cost      : {EstimatedCost}");
         }
     }
 }
