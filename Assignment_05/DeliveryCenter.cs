@@ -9,6 +9,8 @@ namespace Assignment_05
         private Shipment[] shipments;
         private string centerName;
 
+        public Driver Driver { get; set; }
+
         public DeliveryCenter()
         {
             shipments = new Shipment[20];
